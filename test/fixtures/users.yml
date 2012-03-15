@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  username: MyString
+  stripe_token: MyString
+
+two:
+  username: MyString
+  stripe_token: MyString
