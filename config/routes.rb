@@ -1,4 +1,10 @@
 StripeTest::Application.routes.draw do
+
+  #root
+  root to: "root#index"
+  get :form, to: "root#form"
+
+  #user
   resources :users
 
   # The priority is based upon order of creation:

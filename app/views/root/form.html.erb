@@ -1,0 +1,50 @@
+<% content_for :stripe do %>
+<%= javascript_include_tag "https://js.stripe.com/v1/" %>
+<% end %>
+
+<h1>Stripe Form</h1>
+<%= link_to :back, root_path %>
+<form action="" method="POST" id="payment-form">
+  <div>
+    <label>Card Number</label>
+    <input type="text" size="20" autocomplete="off" class="card-number"/>
+    <label>CVS</label>
+    <input type="text" size="4" autocomplete="off" class="card-cvs" />
+  </div>
+  <div>
+    <label>Expiration (MM/YYYY)</label>
+    <input type="text" size="2" class="card-expiry-month" />
+    <span> / </span>
+    <input type="text" size="4" class="card-expiry-year" />
+  </div>
+  <button type="submit" class="submit-button">Submit Payment</button>
+</form>
+
+<script type="text/javascript">
+  Stripe.setPublishableKey('pk_aqLcuqB9dfAhRjb3UOuXSipGN73Sp');
+  $(document).ready(function() {
+    $("#payment-form").submit(function(event) {
+      //disable the submit button to prevent repeat clicks.
+      $('.submit-button').attr("disabled", true);
+
+      Stripe.createToken({
+        number: $('.card-number').val(),
+        cvs: $('.card-cvc').val(),
+        exp_month: $('.card-expiry-month').val(),
+        exp_year: $('.card-expiry-year').val()
+      }, stripeResponseHandler);
+
+      //prevent the form from submitting with the default action.
+      return false;
+    });
+  });
+
+  function stripeResponseHandler(status, response) {
+    if(status == 200) {
+      alert(response.id)
+    }
+    else {
+      alert(response.error.message)
+    }
+  }
+</script>
