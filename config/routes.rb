@@ -1,5 +1,7 @@
 StripeTest::Application.routes.draw do
 
+  devise_for :users
+
   #root
   root to: "root#index"
   get :form, to: "root#form"
