@@ -3,6 +3,7 @@ StripeTest::Application.routes.draw do
   #root
   root to: "root#index"
   get :form, to: "root#form"
+  post :form, to: "root#submit"
 
   #user
   resources :users

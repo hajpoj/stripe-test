@@ -4,6 +4,7 @@
 
 <h1>Stripe Form</h1>
 <%= link_to :back, root_path %>
+<div class="payment-errors"></div>
 <form action="" method="POST" id="payment-form">
   <div>
     <label>Card Number</label>
@@ -40,11 +41,15 @@
   });
 
   function stripeResponseHandler(status, response) {
-    if(status == 200) {
-      alert(response.id)
+    if(response.error) {
+      $(".payment-errors").html(response.error.message);
     }
     else {
-      alert(response.error.message)
+      var form$ = $("#payment-form");
+      var token = response['id'];
+      console.log(token);
+      form$.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+      form$.get(0).submit();
     }
   }
 </script>

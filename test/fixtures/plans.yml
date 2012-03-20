@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  interval: MyString
+  trial_period_days: 1
+  amount: 1
+
+two:
+  name: MyString
+  interval: MyString
+  trial_period_days: 1
+  amount: 1
