@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+    <th>Email</th>
     <th>Username</th>
     <th>Stripe token</th>
     <th></th>
@@ -11,6 +12,7 @@
 
 <% @users.each do |user| %>
   <tr>
+    <td><%= user.email %></td>
     <td><%= user.username %></td>
     <td><%= user.stripe_token %></td>
     <td><%= link_to 'Show', user %></td>

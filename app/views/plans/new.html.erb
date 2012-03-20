@@ -1,0 +1,22 @@
+<%= form_for @plan do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :interval %>
+    <%= f.text_field :interval %>
+  </div>
+  <div>
+    <%= f.label :trial_period_days %>
+    <%= f.text_field :trial_period_days %>
+  </div>
+  <div>
+    <%= f.label :amount %>
+    <%= f.text_field :amount %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+
+<% end %>

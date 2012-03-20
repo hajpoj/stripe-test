@@ -1,0 +1,25 @@
+
+<%= link_to :"new plan", new_plan_path %>
+
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Interval</th>
+    <th>Trial Length</th>
+    <th>Amount</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @plans.each do |p| %>
+      <tr>
+        <td><%= p.id %></td>
+        <td><%= p.name %></td>
+        <td><%= p.interval %></td>
+        <td><%= p.trial_period_days %></td>
+        <td><%= p.amount %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

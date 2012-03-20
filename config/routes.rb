@@ -1,13 +1,19 @@
 StripeTest::Application.routes.draw do
 
-  devise_for :users
+
 
   #root
   root to: "root#index"
   get :form, to: "root#form"
   post :form, to: "root#submit"
 
+  #plan
+  get :plans, to: "plans#index"
+  get :"plans/new", to: "plans#new", as: :new_plan
+  post :plans, to: "plans#create"
+
   #user
+  devise_for :users, path_prefix: 'd'
   resources :users
 
   # The priority is based upon order of creation:
