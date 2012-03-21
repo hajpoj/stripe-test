@@ -3,9 +3,13 @@
 <% end %>
 
 <h1>Stripe Form</h1>
+<div>
+  Current_user's email: <%= @email %>
+</div>
 <%= link_to :back, root_path %>
 <div class="payment-errors"></div>
-<form action="" method="POST" id="payment-form">
+
+<%= form_tag form_path, id: "payment-form" do %>
   <div>
     <label>Card Number</label>
     <input type="text" size="20" autocomplete="off" class="card-number"/>
@@ -18,8 +22,14 @@
     <span> / </span>
     <input type="text" size="4" class="card-expiry-year" />
   </div>
+
+  <div>
+    <label for="plan_id">Plan Id</label>
+    <input name="plan_id" type="text" size="4" />
+  </div>
+
   <button type="submit" class="submit-button">Submit Payment</button>
-</form>
+<% end %>
 
 <script type="text/javascript">
   Stripe.setPublishableKey('pk_aqLcuqB9dfAhRjb3UOuXSipGN73Sp');
@@ -42,12 +52,13 @@
 
   function stripeResponseHandler(status, response) {
     if(response.error) {
+      $('.submit-button').removeAttr("disabled");
       $(".payment-errors").html(response.error.message);
     }
     else {
       var form$ = $("#payment-form");
       var token = response['id'];
-      console.log(token);
+
       form$.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
       form$.get(0).submit();
     }
