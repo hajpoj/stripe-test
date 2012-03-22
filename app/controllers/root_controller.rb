@@ -13,7 +13,14 @@ class RootController < ApplicationController
 
     email = current_user.email
 
-    #TODO: verify its a valid planID
+    if current_plan.nil?
+      render text: "invaid planID"
+    end
+
+    unless current_user.subscription.nil?
+      render text: "this user already has a subscription"
+      return
+    end
 
     customer = Stripe::Customer.create(card: token, plan: plan_id, email: email)
     subscription = Subscription.new(user: current_user, plan: current_plan, stripe_customer_id: customer.id )

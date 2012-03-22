@@ -4,4 +4,9 @@ class Subscription < ActiveRecord::Base
 
   attr_accessible :user, :plan, :stripe_customer_id
 
+  validates :user_id, :uniqueness => true
+  validates_presence_of :user
+
+  validates :stripe_customer_id, :uniqueness => true
+
 end
