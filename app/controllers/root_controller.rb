@@ -2,6 +2,11 @@ class RootController < ApplicationController
   def index
   end
 
+  def email
+    UserMailer.user_charged_email.deliver
+    render :nothing => true
+  end
+
   def form
     @email = current_user.email
   end

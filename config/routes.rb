@@ -4,6 +4,7 @@ StripeTest::Application.routes.draw do
   root to: "root#index"
   get :form, to: "root#form"
   post :form, to: "root#submit"
+  get :email, to: "root#email"
 
   #plan
   get :plans, to: "plans#index"
@@ -13,6 +14,9 @@ StripeTest::Application.routes.draw do
   #user
   devise_for :users, path_prefix: 'd'
   resources :users
+
+  #webhook
+  post "webhook/stripe_receiver"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
