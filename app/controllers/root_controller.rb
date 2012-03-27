@@ -28,7 +28,9 @@ class RootController < ApplicationController
     end
 
     customer = Stripe::Customer.create(card: token, plan: plan_id, email: email)
-    subscription = Subscription.new(user: current_user, plan: current_plan, stripe_customer_id: customer.id )
+    stripe_subscription = customer.subscription
+    trial_end = Time.at(stripe_subscription.trial_end)
+    subscription = Subscription.new(user: current_user, plan: current_plan, stripe_customer_id: customer.id, trial_end_date: trial_end)
     if subscription.save
       render text: "Subscription was created. Email: #{current_user.email}, Plan: #{current_plan.name}, stripe_id: #{customer.id}"
     else

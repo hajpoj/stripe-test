@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120321215827) do
+ActiveRecord::Schema.define(:version => 20120327182725) do
 
   create_table "plans", :force => true do |t|
     t.string   "name"
@@ -25,9 +25,10 @@ ActiveRecord::Schema.define(:version => 20120321215827) do
   create_table "subscriptions", :force => true do |t|
     t.integer  "user_id"
     t.integer  "plan_id"
-    t.integer  "stripe_customer_id"
+    t.string   "stripe_customer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "trial_end_date"
   end
 
   add_index "subscriptions", ["stripe_customer_id"], :name => "index_subscriptions_on_stripe_customer_id", :unique => true

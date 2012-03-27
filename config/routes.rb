@@ -1,5 +1,8 @@
 StripeTest::Application.routes.draw do
 
+  #subscription
+  resources :subscriptions
+
   #root
   root to: "root#index"
   get :form, to: "root#form"
